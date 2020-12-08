@@ -7,6 +7,7 @@ import {Row, Col, Card, Toast} from 'react-bootstrap';
 import {Button} from 'semantic-ui-react';
 import axios from 'axios';
 import {Form, Field, reduxForm} from 'redux-form';
+import {baseURL} from '../URLConfig';
 
 class cart extends Component {
   state = {message:"", show:false}
@@ -26,7 +27,7 @@ class cart extends Component {
   handleClick(cart_id){    
     console.log("I will delete "+cart_id)
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/deleteCart', {cart_id})
+    axios.post(`${baseURL}/deleteCart`, {cart_id})
         .then(response => {
             console.log("Status Code : ",response.status);
             console.log(response)            
@@ -51,7 +52,7 @@ class cart extends Component {
     console.log("Total = "+total)
     // console.log("Formvalues = "+JSON.stringify({...formValues, ...this.props.cart.cart}))
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/placeOrder',{...formValues, total, orders:this.props.cart.cart})
+    axios.post(`${baseURL}/placeOrder`,{...formValues, total, orders:this.props.cart.cart})
         .then(response => {
             console.log("Status Code : ",response.status);
             console.log(response)            
@@ -94,7 +95,7 @@ class cart extends Component {
         return (
           <Card bg="white" className="shadow p-3 mb-5 rounded" key={dish.cart_id} style={{width:"800px",marginLeft:50, marginTop:20, height:"200px"}}>
             <Card.Body>
-            <div style={{width:"150px",height:"150px", float:"left"}}><img alt="Profile Photo" src={`http://localhost:3001/${dish.dish_path}`} style={{width:"150px",height:"150px"}}></img></div>
+            <div style={{width:"150px",height:"150px", float:"left"}}><img alt="Profile Photo" src={`${baseURL}/${dish.dish_path}`} style={{width:"150px",height:"150px"}}></img></div>
             <div>
               <Card.Title style={{marginLeft:"30%"}}>{dish.dish_name}</Card.Title>
               <Card.Text style={{marginLeft:"30%"}}>

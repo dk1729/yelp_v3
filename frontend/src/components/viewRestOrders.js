@@ -7,6 +7,7 @@ import {Redirect} from 'react-router';
 import axios from 'axios';
 import {Field, reduxForm, Form} from 'redux-form';
 import {Link} from 'react-router-dom';
+import { baseURL } from '../URLConfig';
 
 class viewRestOrders extends Component {
   state={updatedData:[], nosuch:false, show:false, message:""}
@@ -41,7 +42,7 @@ class viewRestOrders extends Component {
     console.log(temp)
 
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/filter_order_status',{id:window.localStorage.getItem('rest_id'), type:"rest", statuses:temp})
+    axios.post(`${baseURL}/filter_order_status`,{id:window.localStorage.getItem('rest_id'), type:"rest", statuses:temp})
     .then(response => {
       console.log("Status Code : ",response.status);
       console.log(response.data)
@@ -68,7 +69,7 @@ class viewRestOrders extends Component {
     console.log(event.target.id)
 
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/updateOrderStatus',{order_id:event.target.id, status:event.target.value})
+    axios.post(`${baseURL}/updateOrderStatus`,{order_id:event.target.id, status:event.target.value})
         .then(response => {
             console.log("Status Code : ",response.status);
             this.props.fetchOrderData(window.localStorage.getItem('rest_id'), "rest");

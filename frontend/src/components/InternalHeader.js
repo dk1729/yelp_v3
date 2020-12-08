@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {connect} from 'react-redux';
 import {removeRestID, restSignOut, signOut, removeID} from '../actions';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Grid, Button} from 'semantic-ui-react'
 import {Field, Form, reduxForm} from 'redux-form';
 import {setSearchTerms, applyFilters} from '../actions';

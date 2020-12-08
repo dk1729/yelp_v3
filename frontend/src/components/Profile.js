@@ -7,6 +7,7 @@ import {fetchUserData} from '../actions';
 import { Row,Col, Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTag, faCalendarWeek,  faStar, faUserFriends, faCamera, faIdCard } from '@fortawesome/free-solid-svg-icons'
+import { baseURL } from '../URLConfig';
 
 class Profile extends Component {  
   componentDidMount(){        
@@ -28,7 +29,7 @@ class Profile extends Component {
           <Row>
             <Col>
               <div style={{marginLeft:100, marginTop:40, border:"1px solid black",width:"220px",height:"220px"}}>
-                <img alt="Profile Photo" src={`http://localhost:3001/${this.props.formData.path}`} style={{width:"220px",height:"220px"}}></img>
+                <img alt="Profile Photo" src={`${baseURL}/${this.props.formData.path}`} style={{width:"220px",height:"220px"}}></img>
               </div>
             </Col>
             <Col>

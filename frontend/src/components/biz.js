@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCheck, faTimes} from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import ReviewModal from './ReviewModal';
+import {baseURL} from '../URLConfig';
 
 class biz extends Component {
   
@@ -36,7 +37,7 @@ class biz extends Component {
       console.log("Hola")
     }
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/addToCart',{dish_id, dish_path, rest_id:this.props.location.state.restaurant.rest_id, user_id:window.localStorage.getItem('id'), count})
+    axios.post(`${baseURL}/addToCart`,{dish_id, dish_path, rest_id:this.props.location.state.restaurant.rest_id, user_id:window.localStorage.getItem('id'), count})
         .then(response => {
             console.log("Status Code : ",response.status);
             console.log(response)            
@@ -69,7 +70,7 @@ class biz extends Component {
         return (          
           <Card bg="white" className="shadow p-3 mb-5 rounded" style={{width:"800px",marginLeft:50, height:"250px"}}>
             <Card.Body>
-            <div style={{width:"200px",height:"200px", float:"left"}}><img alt="Profile Photo" src={`http://localhost:3001/${dish.dish_path}`} style={{width:"200px",height:"200px"}}></img></div>
+            <div style={{width:"200px",height:"200px", float:"left"}}><img alt="Profile Photo" src={`${baseURL}/${dish.dish_path}`} style={{width:"200px",height:"200px"}}></img></div>
             <div >
               <Card.Title style={{marginLeft:"30%"}}>{dish.dish_name}</Card.Title>
               <Card.Text style={{marginLeft:"30%"}}>
@@ -126,10 +127,10 @@ class biz extends Component {
         <InternalHeader/>        
         <div style={{border:"1px solid black", marginTop:20, height:"200px"}}>
           <Row>          
-            <Col><img alt="Profile Photo" src={`http://localhost:3001/${this.props.location.state.restaurant.path1}`} style={{width:"110%",height:"200px"}}></img></Col>
-            <Col><img alt="Profile Photo" src={`http://localhost:3001/${this.props.location.state.restaurant.path2}`} style={{width:"110%",height:"200px"}}></img></Col>
-            <Col><img alt="Profile Photo" src={`http://localhost:3001/${this.props.location.state.restaurant.path3}`} style={{width:"110%",height:"200px"}}></img></Col>
-            <Col><img alt="Profile Photo" src={`http://localhost:3001/${this.props.location.state.restaurant.path4}`} style={{width:"110%",height:"200px"}}></img></Col>
+            <Col><img alt="Profile Photo" src={`${baseURL}/${this.props.location.state.restaurant.path1}`} style={{width:"110%",height:"200px"}}></img></Col>
+            <Col><img alt="Profile Photo" src={`${baseURL}/${this.props.location.state.restaurant.path2}`} style={{width:"110%",height:"200px"}}></img></Col>
+            <Col><img alt="Profile Photo" src={`${baseURL}/${this.props.location.state.restaurant.path3}`} style={{width:"110%",height:"200px"}}></img></Col>
+            <Col><img alt="Profile Photo" src={`${baseURL}/${this.props.location.state.restaurant.path4}`} style={{width:"110%",height:"200px"}}></img></Col>
           </Row>
         </div>
         <div style={{marginTop:10, height:"200px", borderBottom:"1px solid #eeeeef"}}>

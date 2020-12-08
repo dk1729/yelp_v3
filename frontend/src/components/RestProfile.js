@@ -7,7 +7,7 @@ import {fetchRestData, fetchDishData} from '../actions';
 import {Row,Col, Nav, Card} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCalendarWeek, faStar, faUser, faUserFriends, faCamera, faIdCard } from '@fortawesome/free-solid-svg-icons'
-
+import {baseURL} from '../URLConfig';
 class RestProfile extends Component {
   
   componentDidMount(){        
@@ -29,7 +29,7 @@ class RestProfile extends Component {
           <Card bg="white" className="shadow p-3 mb-5 rounded" style={{color:"black", width:"600px",marginLeft:20, marginTop:15, height:"200px"}}>
               <Card.Body>
                 {/* <Card.Img style={{width:100, height:100}} src={`http://localhost:3001/${this.props.restDetails.path1}`}></Card.Img> */}
-                <div style={{width:"100px",height:"100px", float:"left"}}><img alt="Profile Photo" src={`http://localhost:3001/${dish.dish_path}`} style={{width:"100px",height:"100px"}}></img></div>
+                <div style={{width:"100px",height:"100px", float:"left"}}><img alt="Profile Photo" src={`${baseURL}/${dish.dish_path}`} style={{width:"100px",height:"100px"}}></img></div>
                 <div>
                   <Card.Title style={{marginLeft:"30%"}}>Name: {dish.dish_name}</Card.Title>
                   <Card.Text style={{marginLeft:"30%"}}>
@@ -53,7 +53,7 @@ class RestProfile extends Component {
           <Row>
             <Col>
               <div style={{marginLeft:100, marginTop:40, border:"1px solid black",width:"220px",height:"220px"}}>
-                <img alt="Profile Photo" src={`http://localhost:3001/${this.props.restDetails.path1}`} style={{width:"220px",height:"220px"}}></img>
+                <img alt="Profile Photo" src={`${baseURL}/${this.props.restDetails.path1}`} style={{width:"220px",height:"220px"}}></img>
               </div>
             </Col>
             <Col>

@@ -4,7 +4,9 @@ import {Redirect} from 'react-router';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import InternalHeader from './InternalHeader';
+import ImageUploader from 'react-images-upload';
 import {Button} from 'semantic-ui-react';
+import {baseURL} from '../URLConfig';
 
 class addphoto extends Component {
 
@@ -23,7 +25,7 @@ class addphoto extends Component {
       }
     }
     axios.defaults.withCredentials = true;
-    axios.post("http://localhost:3001/upload", formData, config)
+    axios.post(`${baseURL}/upload`, formData, config)
       .then(res => {
         console.log(res)
       })

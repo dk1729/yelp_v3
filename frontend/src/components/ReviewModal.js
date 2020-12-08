@@ -3,7 +3,7 @@ import {Row,Col, Card, Modal} from 'react-bootstrap';
 import { Rating } from 'semantic-ui-react';
 import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react';
 import axios from 'axios';
-
+import {baseURL} from '../URLConfig';
 export default class ReviewModal extends Component {
   state = {rating:0, review:""}
 
@@ -24,7 +24,7 @@ export default class ReviewModal extends Component {
     console.log("State : "+JSON.stringify(this.state))
 
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/submitReview',{rating:this.state.rating, review:this.state.review, user_id:window.localStorage.getItem('id'), rest_id:this.props.rest_id})
+    axios.post(`${baseURL}/submitReview`,{rating:this.state.rating, review:this.state.review, user_id:window.localStorage.getItem('id'), rest_id:this.props.rest_id})
         .then(response => {
             console.log("Status Code : ",response.status);
             console.log(response)            

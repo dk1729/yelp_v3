@@ -3,6 +3,7 @@ import InternalRestHeader from './InternalRestHeader';
 import {Field, reduxForm} from 'redux-form';
 import {Row, Col} from 'react-bootstrap';
 import axios from 'axios';
+import {baseURL} from '../URLConfig';
 
 class AddDish extends Component {
   state = {photo:null}
@@ -36,14 +37,14 @@ class AddDish extends Component {
     // formData.append('formValues', JSON.stringify(formValues))
 
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/addDish',formValues)
+    axios.post(`${baseURL}/addDish`,formValues)
         .then(response => {
             console.log("Status Code : ",response.status);
             console.log(response)
             if(response.status === 202){
               formData.append('dish_id', response.data);
               axios.defaults.withCredentials = true;
-              axios.post("http://localhost:3001/uploadDishImage", formData)
+              axios.post(`${baseURL}/uploadDishImage`, formData)
                 .then(res => {
                   console.log(res)
                 })

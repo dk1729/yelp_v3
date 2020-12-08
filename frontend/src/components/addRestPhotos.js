@@ -1,7 +1,8 @@
 import React from 'react';
+import ImageUploader from 'react-images-upload';
 import InternalRestHeader from './InternalRestHeader';
 import axios from 'axios';
-
+import {baseURL} from '../URLConfig';
 
 class addRestPhotos extends React.Component {
   state = {photos:''}
@@ -20,7 +21,7 @@ class addRestPhotos extends React.Component {
     formData.append('rest_id', window.localStorage.getItem('rest_id'));        
 
     axios.defaults.withCredentials = true;
-    axios.post("http://localhost:3001/uploadRestImages", formData)
+    axios.post(`${baseURL}/uploadRestImages`, formData)
       .then(res => {
         console.log(res)
       })

@@ -6,6 +6,7 @@ import {Form, Button, Card, Input } from 'semantic-ui-react';
 import axios from 'axios';
 import {Row,Col, Toast} from 'react-bootstrap';
 import RegisteredEvents from './RegisteredEvents';
+import { baseURL } from '../URLConfig';
 
 class ShowEvents extends Component {
   state = {searchTerm:"", cards:[], modalShow:false, message:"", show:false}
@@ -34,7 +35,7 @@ class ShowEvents extends Component {
     }
     else{
       axios.defaults.withCredentials = true;
-      axios.get('http://localhost:3001/searchEvents/'+this.state.searchTerm)
+      axios.get(`${baseURL}/searchEvents/`+this.state.searchTerm)
           .then(response => {
               console.log("Status Code : ",response.status);            
               console.log(response.data)
@@ -50,7 +51,7 @@ class ShowEvents extends Component {
     console.log("Event id = "+event_id)
 
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/registerForEvent',{user_id, event_id})
+    axios.post(`${baseURL}/registerForEvent`,{user_id, event_id})
         .then(response => {
             console.log("Status Code : ",response.status);            
             if(response.status === 200){

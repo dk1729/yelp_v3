@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import {restSignUpSuccess, restSignUpFail} from '../actions';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router';
+import { baseURL } from '../URLConfig';
 
 class RestSignup extends Component {    
     renderInput({input, label, type}){
@@ -22,7 +23,7 @@ class RestSignup extends Component {
     
         axios.defaults.withCredentials = true;
             //make a post request with the user data
-        axios.post('http://localhost:3001/restsignup',formValues)
+        axios.post(`${baseURL}/restsignup`,formValues)
             .then(response => {
                 console.log("Status Code : ",response.status);
                 this.props.restSignUpSuccess();

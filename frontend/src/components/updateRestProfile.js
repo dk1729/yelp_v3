@@ -6,6 +6,7 @@ import axios from 'axios';
 import {Redirect} from 'react-router';
 import InternalRestHeader from './InternalRestHeader';
 import {Row,Nav,Col} from 'react-bootstrap';
+import { baseURL } from '../URLConfig';
 
 class updateRestProfile extends Component {
   componentDidMount(){
@@ -32,7 +33,7 @@ class updateRestProfile extends Component {
         console.log(response.data.results[0].geometry.location)
         console.log({...formValues, latitude:response.data.results[0].geometry.location.lat, longitude:response.data.results[0].geometry.location.lng})
         axios.defaults.withCredentials = true;
-        axios.post('http://localhost:3001/updateRest',{...formValues, latitude:response.data.results[0].geometry.location.lat, longitude:response.data.results[0].geometry.location.lng})
+        axios.post(`${baseURL}/updateRest`,{...formValues, latitude:response.data.results[0].geometry.location.lat, longitude:response.data.results[0].geometry.location.lng})
             .then(response => {
                 console.log("Status Code : ",response.status);                              
 
@@ -43,7 +44,7 @@ class updateRestProfile extends Component {
     }
     else{
       axios.defaults.withCredentials = true;
-      axios.post('http://localhost:3001/updateRest',formValues)
+      axios.post(`${baseURL}/updateRest`,formValues)
           .then(response => {
               console.log("Status Code : ",response.status);                              
 

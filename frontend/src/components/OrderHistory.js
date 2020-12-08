@@ -5,6 +5,7 @@ import {Row,Col, Card} from 'react-bootstrap';
 import {fetchOrderData} from '../actions';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {baseURL} from '../URLConfig';
 
 class OrderHistory extends Component {
 
@@ -37,7 +38,7 @@ class OrderHistory extends Component {
     console.log(temp)
 
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/filter_order_status',{id:window.localStorage.getItem('id'), type:"user", statuses:temp})
+    axios.post(`${baseURL}/filter_order_status`,{id:window.localStorage.getItem('id'), type:"user", statuses:temp})
     .then(response => {
       console.log("Status Code : ",response.status);
       console.log(response.data)

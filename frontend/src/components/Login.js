@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {signIn, setID} from '../actions';
 import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
+import {baseURL} from '../URLConfig';
 
 class Login extends React.Component{
   state = {loginFailed:false}
@@ -19,7 +20,7 @@ class Login extends React.Component{
 
   onSubmit = formValues =>{
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/login',formValues)
+    axios.post(`${baseURL}/login`,formValues)
         .then(response => {
             if(response.status === 200){
               window.localStorage.setItem('isSignedIn',true);
@@ -54,7 +55,7 @@ class Login extends React.Component{
                     <div className="sl3">
                       <div className="sl4">
                         <div className="signup-header">
-                          <h2>Sign Up for Yelp</h2>
+                        <h2>Log IN</h2>
                           <p className="subheading">Connect with great local businesses</p>
                         </div>
                         {this.state.loginFailed && <div className="alert alert-danger">

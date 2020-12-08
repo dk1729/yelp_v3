@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom';
 import {signUpSuccess, signUpFail} from '../actions';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router';
+import {baseURL} from '../URLConfig';
 
 class Signup extends React.Component{
   renderInput({input, label, type}){
@@ -19,7 +20,7 @@ class Signup extends React.Component{
 
   onSubmit = formValues => {
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/signup',formValues)
+    axios.post(`${baseURL}/signup`,formValues)
         .then(response => {
             if(response.status === 200){
               this.props.signUpSuccess();

@@ -3,6 +3,7 @@ import {Row,Col, Modal} from 'react-bootstrap';
 import axios from 'axios';
 import {Form, Field, reduxForm} from 'redux-form';
 import {Redirect} from 'react-router';
+import {baseURL} from '../URLConfig';
 
 class CreateEventModal extends Component {
 
@@ -20,7 +21,7 @@ class CreateEventModal extends Component {
     formValues = {...formValues, rest_id:window.localStorage.getItem('rest_id')}
     console.log("New formvalues = "+JSON.stringify(formValues))
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/addEvent',formValues)
+    axios.post(`${baseURL}/addEvent`,formValues)
         .then(response => {
             console.log("Status Code : ",response.status);                              
             if(response.status == 200){

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import InternalRestHeader from './InternalRestHeader';
 import {Field, reduxForm} from 'redux-form';
 import axios from 'axios';
+import { baseURL } from '../URLConfig';
 
 class updateDish extends Component {
   componentDidMount(){    
@@ -20,7 +21,7 @@ class updateDish extends Component {
   onSubmit = (formValues) => {    
     formValues = {...formValues, dish_id:this.props.location.state.dish_id}    
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/updateDish',formValues)
+    axios.post(`${baseURL}/updateDish`,formValues)
         .then(response => {
             console.log("Status Code : ",response.status);                              
 

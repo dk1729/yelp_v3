@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {restSignIn, setRestID} from '../actions';
 import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
+import { baseURL } from '../URLConfig';
 
 class RestLogin extends React.Component{
   renderInput({input, label, type, meta:{touched, error}}){
@@ -21,7 +22,7 @@ class RestLogin extends React.Component{
     console.log(formValues)
 
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/restlogin',formValues)
+    axios.post(`${baseURL}/restlogin`,formValues)
         .then(response => {
             console.log("Status Code : ",response.status);
             console.log(response)            
@@ -56,7 +57,7 @@ class RestLogin extends React.Component{
                     <div className="sl3">
                       <div className="sl4">
                         <div className="signup-header">
-                          <h2>Sign Up for Yelp</h2>
+                          <h2>Log in for Business</h2>
                           <p className="subheading">Connect with great local businesses</p>
                         </div>
                         {console.log(this.props.signedUp)}

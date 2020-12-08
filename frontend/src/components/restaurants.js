@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import axios from 'axios';
 import Maps from './Maps';
+import {baseURL} from '../URLConfig';
 
 class restaurants extends Component {
   state = {updatedData:[], nosuch:false}
@@ -73,7 +74,7 @@ class restaurants extends Component {
     console.log("New formvalues = "+JSON.stringify(formValues))
     
     axios.defaults.withCredentials = true;
-    axios.post('http://localhost:3001/filter',formValues)
+    axios.post(`${baseURL}/filter`,formValues)
         .then(response => {
             console.log("Status Code : ",response.status);            
             if(response.status === 200){
@@ -107,7 +108,7 @@ class restaurants extends Component {
           <Link to={{pathname:"/biz", state:{restaurant}}} style={{textDecoration:"none"}}>
             <Card bg="white" className="shadow p-3 mb-5 rounded" style={{color:"black", width:"600px",marginLeft:20, marginTop:15, height:"200px"}}>
               <Card.Body>
-              <div style={{width:"100px",height:"100px", float:"left"}}><img alt="Profile Photo" src={`http://localhost:3001/${restaurant.path1}`} style={{width:"100px",height:"100px"}}></img></div>
+              <div style={{width:"100px",height:"100px", float:"left"}}><img alt="Profile Photo" src={`${baseURL}/${restaurant.path1}`} style={{width:"100px",height:"100px"}}></img></div>
               <div>
                 <Card.Title style={{marginLeft:"30%", marginTop:-10}}>{restaurant.rest_name}</Card.Title>
                 <Card.Text style={{marginLeft:"30%", marginTop:-10}}>
@@ -132,7 +133,7 @@ class restaurants extends Component {
           <Link to={{pathname:"/biz", state:{restaurant}}} style={{textDecoration:"none"}}>
             <Card bg="white" className="shadow p-3 mb-5 rounded" style={{color:"black", width:"600px",marginLeft:20, marginTop:15, height:"200px"}}>
               <Card.Body>
-              <div style={{width:"100px",height:"100px", float:"left"}}><img alt="Profile Photo" src={`http://localhost:3001/${restaurant.path1}`} style={{width:"100px",height:"100px"}}></img></div>
+              <div style={{width:"100px",height:"100px", float:"left"}}><img alt="Profile Photo" src={`${baseURL}/${restaurant.path1}`} style={{width:"100px",height:"100px"}}></img></div>
               <div>
                 <Card.Title style={{marginLeft:"30%"}}>{restaurant.rest_name}</Card.Title>
                 <Card.Text style={{marginLeft:"30%"}}>

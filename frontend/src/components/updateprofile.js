@@ -6,7 +6,7 @@ import axios from 'axios';
 import {Redirect} from 'react-router';
 import InternalHeader from './InternalHeader';
 import {Row,Nav,Col} from 'react-bootstrap';
-
+import {baseURL} from '../URLConfig';
 var redirectVar = null;;
 class updateprofile extends Component {
   state = {updateSuccess:false}
@@ -36,7 +36,7 @@ class updateprofile extends Component {
         console.log(response.data.results[0].geometry.location)
         console.log({...formValues, latitude:response.data.results[0].geometry.location.lat, longitude:response.data.results[0].geometry.location.lng})
         axios.defaults.withCredentials = true;
-        axios.post('http://localhost:3001/update',{...formValues, latitude:response.data.results[0].geometry.location.lat, longitude:response.data.results[0].geometry.location.lng})
+        axios.post(`${baseURL}/update`,{...formValues, latitude:response.data.results[0].geometry.location.lat, longitude:response.data.results[0].geometry.location.lng})
             .then(response => {
                 console.log("Status Code : ",response.status);
                 if(response.status === 200){
@@ -49,7 +49,7 @@ class updateprofile extends Component {
     }
     else{
       axios.defaults.withCredentials = true;
-      axios.post('http://localhost:3001/update',formValues)
+      axios.post(`${baseURL}/update`,formValues)
           .then(response => {
             console.log("Status Code : ",response.status);
             this.setState({updateSuccess:true})
